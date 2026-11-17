@@ -1,0 +1,26 @@
+name: Update Ramu
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Point the cask at the newest Ramu release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/update.sh
+      - name: Commit a new version
+        run: |
+          git add Casks/ramu.rb
+          if git diff --cached --quiet; then exit 0; fi
+          version=$(sed -nE 's/^  version "(.*)"/\1/p' Casks/ramu.rb)
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m "ramu $version"
+          git push
