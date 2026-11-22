@@ -1,9 +1,9 @@
 cask "ramu" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.1.0-alpha.6"
-  sha256 arm:   "d134a02fe1c3058d447f585a1178e37d0d2b110fa21fbffa8595ae3f6c4a9150",
-         intel: "16694098c4422bbf75f64e96f38a2f67aa94345d3792a01d0eaaa25ca6069b5b"
+  version "0.1.0-alpha.11"
+  sha256 arm:   "dd432f3cd942a1e74dd44e96e7377ff77d07e985bad36d5882f5da1edee6594c",
+         intel: "2f1a6d927c91193ab2c403b542759cca76d38d3888b5304158ea8b1b32d2e8f6"
 
   url "https://github.com/akalstack/ramu/releases/download/v#{version}/darwin-#{arch}-Ramu-#{version}-#{arch}.dmg",
       verified: "github.com/akalstack/ramu/"
